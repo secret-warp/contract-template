@@ -33,14 +33,19 @@ default = []
 backtraces = ["cosmwasm-std/backtraces"]
 
 [dependencies]
-snafu = { version = "0.6.3" }
-serde = { version = "1.0.114", default-features = false, features = ["derive"] }
-schemars = "0.8.1"
-cosmwasm-std = { git = "https://github.com/scrtlabs/cosmwasm", branch = "secret" , features=["staking"], package ="secret-cosmwasm-std" }
-secret-toolkit = { git = "https://github.com/itsHaseebSaeed/secret-toolkit", branch = "master", features = ["permit"] }
-secret-storage-plus = { git = "https://github.com/securesecrets/secret-plus-utils", branch = "main" }
+cosmwasm-std = { git = "https://github.com/scrtlabs/cosmwasm", tag = "v1.1.9-secret" }
+cosmwasm-storage = { git = "https://github.com/scrtlabs/cosmwasm", tag = "v1.1.9-secret" }
+schemars = { version = "0.8.11" }
+serde = { version = "1.0" }
+thiserror = { version = "1.0" }
+cosmwasm-schema = "1.0.0"
+secret-toolkit = { git = "https://github.com/scrtlabs/secret-toolkit", tag = "v0.8.0" }
+cw-storage-plus = { version = "1.0.1", default-features = false }
+cosmwasm-schema = "1.2.0"
 
-shared = { path = "../../packages/shared" }
+[patch.crates-io]
+cosmwasm-std = { git = "https://github.com/scrtlabs/cosmwasm", tag = "v1.1.9-secret" }
 
-[dev-dependencies]
-cosmwasm-schema = { version = "1.1.0" }
+[[bin]]
+name = "schema"
+required-features = ["schema"]
