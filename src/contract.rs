@@ -3,7 +3,7 @@ use cosmwasm_std::{
 };
 
 use crate::state::Config;
-use shared::<CONTRACT_NAME>::msg::{ExecuteMsg, InstantiateMsg, OwnerResponse, QueryMsg};
+use shared::<CONTRACT_NAME>::msg::{ExecuteMsg, InstantiateMsg, OwnerResponse, QueryMsg, MigrateMsg};
 #[entry_point]
 pub fn instantiate(
     deps: DepsMut,
@@ -46,6 +46,16 @@ fn query_owner(deps: Deps) -> StdResult<OwnerResponse> {
     let cfg = Config::read_config(deps.storage)?;
     Ok(OwnerResponse { owner: cfg.owner })
 }
+
+#[entry_point]
+pub fn migrate(
+    _deps: DepsMut,
+    _env: Env,
+    _msg: MigrateMsg,
+) -> StdResult<Response> {
+    Ok(Response::default())
+}
+
 /*
 #[cfg(test)]
 mod tests {
