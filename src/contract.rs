@@ -1,5 +1,5 @@
 use cosmwasm_std::{
-    entry_point, to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response, StdError, StdResult,
+    entry_point, to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response, StdResult,
 };
 
 use crate::state::Config;
@@ -12,7 +12,7 @@ pub fn instantiate(
     _msg: InstantiateMsg,
 ) -> StdResult<Response> {
     let config = Config {
-        owner: deps.api.addr_canonicalize(info.sender.as_str())?,
+        owner: info.sender.clone(),
         message: "".to_owned(),
     };
 
@@ -25,13 +25,13 @@ pub fn instantiate(
 
 #[entry_point]
 pub fn execute(
-    deps: DepsMut,
+    _deps: DepsMut,
     _env: Env,
-    info: MessageInfo,
+    _info: MessageInfo,
     msg: ExecuteMsg,
 ) -> StdResult<Response> {
     match msg {
-        ExecuteMsg::ChangeOwner { addr } => todo!(),
+        ExecuteMsg::ChangeOwner { addr: _ } => todo!(),
     }
 }
 

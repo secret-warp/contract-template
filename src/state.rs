@@ -2,13 +2,13 @@ use schemars::JsonSchema;
 use secret_toolkit::storage::Item;
 use serde::{Deserialize, Serialize};
 
-use cosmwasm_std::{CanonicalAddr, StdResult, Storage};
+use cosmwasm_std::{Addr, StdResult, Storage};
 
 pub static CONFIG: Item<Config> = Item::new(b"config");
 
 #[derive(Serialize, Deserialize, Clone, Debug, Eq, PartialEq, JsonSchema)]
 pub struct Config {
-    pub owner: CanonicalAddr,
+    pub owner: Addr,
     pub message: String,
 }
 
